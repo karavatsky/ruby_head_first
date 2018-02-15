@@ -1,5 +1,10 @@
-lines = []
+def find_adjective(string)
+  words = string.split(" ")
+  index = words.find_index("is")
+  words[index + 1]
+end
 
+lines = []
 File.open("reviews.txt") do |review_file|
   lines = review_file.readlines()
 end
@@ -10,15 +15,12 @@ puts relevant_lines
 puts
 puts reviews
 puts
-def find_adjective(string)
-  words = string.split(" ")
-  index = words.find_index("is")
-  words[index + 1]
+
+#adjectives = reviews.map { |review| find_adjective(review) }
+adjectives = reviews.map do |review|
+  adjectives = find_adjective(review)
+  "'#{adjectives.capitalize}'"
 end
 
-adjectives = []
-reviews.each do |review|
-  adjectives << find_adjective(review)
-end
-
+puts "The critics agree, Truncated is:"
 puts adjectives
